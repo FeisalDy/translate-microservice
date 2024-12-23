@@ -1,0 +1,24 @@
+#
+# TABLE STRUCTURE FOR: authors
+#
+
+DROP TABLE IF EXISTS `authors`;
+
+CREATE TABLE `authors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `birthdate` date NOT NULL,
+  `added` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+
+INSERT INTO `authors` (`id`, `first_name`, `last_name`, `email`, `birthdate`, `added`) VALUES (1, 'Ricky', 'Armstrong', 'neal51@example.org', '2023-02-10', '1984-12-15 16:38:54');
+INSERT INTO `authors` (`id`, `first_name`, `last_name`, `email`, `birthdate`, `added`) VALUES (2, 'Santiago', 'Stanton', 'legros.athena@example.org', '1973-01-22', '1995-04-25 04:25:24');
+INSERT INTO `authors` (`id`, `first_name`, `last_name`, `email`, `birthdate`, `added`) VALUES (3, 'Liana', 'Padberg', 'king.mayer@example.com', '2007-03-29', '2005-09-13 10:06:34');
+INSERT INTO `authors` (`id`, `first_name`, `last_name`, `email`, `birthdate`, `added`) VALUES (4, 'Erika', 'Terry', 'ritchie.darien@example.net', '2005-11-02', '1975-01-11 01:50:58');
+INSERT INTO `authors` (`id`, `first_name`, `last_name`, `email`, `birthdate`, `added`) VALUES (5, 'Hassie', 'Luettgen', 'erowe@example.org', '2019-08-16', '2020-11-08 23:48:58');
+
+

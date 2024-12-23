@@ -1,3 +1,4 @@
+# fmt: off
 import sys
 import random
 sys.path.insert(0,r'./')
