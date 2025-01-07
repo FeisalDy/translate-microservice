@@ -1,7 +1,7 @@
-import psycopg2
 from tqdm.auto import tqdm
 from translator import DataParser
 from configs import ChapterConfig
+from ..utils.db import create_connection
 
 
 class TranslateController(DataParser):
@@ -27,15 +27,16 @@ class TranslateController(DataParser):
     def read(self):
         """Read data from the PostgreSQL database."""
         super(TranslateController, self).read()
-        connection = psycopg2.connect(
-            database="novel-postgres", user="postgres", password="admin", host="localhost", port="5432"
-        )
+        connection = create_connection()
         cursor = connection.cursor()
+
+        print(self.book_id)
 
         cursor.execute(
             'SELECT id, "bookId", "chapterNumber", "chapterTitle", content FROM "Chapter" WHERE "bookId" = %s ORDER BY id',
             (self.book_id,)
         )
+
         rows = cursor.fetchall()
         self.data_read = [
             {"id": row[0], "bookId": row[1], "chapterNumber": row[2],
@@ -63,8 +64,7 @@ class TranslateController(DataParser):
 
     def custom_save(self):
         """Save the translated content into a new SQLite database."""
-        connection = psycopg2.connect(
-            database="novel-postgres", user="postgres", password="admin", host="localhost", port="5432")
+        connection = create_connection()
         cursor = connection.cursor()
 
         for record in tqdm(self.converted_data_translated, desc="Updating translated content"):

@@ -1,7 +1,7 @@
 import pprint
 from typing import Dict, List
 from dataclasses import dataclass
-from .config import Config
+from ..config import Config
 import sys
 sys.path.insert(0, r'./')
 
@@ -9,7 +9,7 @@ sys.path.insert(0, r'./')
 @dataclass
 class ChapterConfig(Config):
     """
-    Custom configuration for translating books data.
+    Custom configuration for translating chapter data.
     """
     id: int
     bookId: int
